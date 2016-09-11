@@ -1,0 +1,10 @@
+[Unit]
+Description=Generates /etc/hello_config.env file
+After=etc2.service
+Requires=etcd2.service
+After=fleet.service
+Requires=fleet.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh –c “/usr/bin/echo NAME=$(etcdctl get /name) > /etc/hello_config.env
