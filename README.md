@@ -1,2 +1,2 @@
 # CoreOS-GettingStarted
-Sample Application for Pluralsight course on "Getting Started with CoreOS"
+Sample Application and Module demos for Pluralsight course on "Getting Started with CoreOS"
