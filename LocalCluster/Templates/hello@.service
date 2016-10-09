@@ -1,0 +1,11 @@
+[Unit] 
+Description=Hello World template unit
+After=docker.service 
+Requires=docker.service  
+
+[Service] 
+ExecStartPre=-/usr/bin/docker kill %p-%i 
+ExecStartPre=-/usr/bin/docker rm %p-%i 
+ExecStart=/usr/bin/docker run --name %p-%i busybox /bin/sh -c "while true; do echo Hello World; sleep 1; done" 
+ExecStop=/usr/bin/docker stop %p-%i
+Restart=on-failure
