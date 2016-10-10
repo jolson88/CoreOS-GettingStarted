@@ -1,0 +1,11 @@
+[Unit]
+Description=Announce Hello Service
+BindsTo=hello@%i.service
+After=hello@%i.service
+
+[Service]
+ExecStart=/bin/sh -c "while true; do etcdctl set /services/hello/%i $(docker inspect -f '{{.NetworkSettings.IPAddress}}' hello-%i) --ttl 60;sleep 45;done"
+ExecStop=/usr/bin/etcdctl rm /services/hello/svc@%i
+
+[X-Fleet]
+MachineOf=hello@%i.service
