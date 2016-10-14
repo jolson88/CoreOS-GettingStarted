@@ -1,3 +1,5 @@
+**/*.vagrant/
+
 # Logs
 logs
 *.log
