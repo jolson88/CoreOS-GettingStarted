@@ -1,0 +1,16 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "Simple web service for CoreOS-GettingStarted course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.22.1",
+    "restify": "^4.1.1",
+    "rethinkdb": "^2.3.3"
+  }
+}
