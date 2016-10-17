@@ -8,13 +8,13 @@ TimeoutStartSec=10m
 ExecStartPre=-/usr/bin/docker kill %p-%i
 ExecStartPre=-/usr/bin/docker rm %p-%i
 ExecStartPre=-/usr/bin/mkdir -p /data/rethinkdb
-ExecStartPre=/usr/bin/docker pull rethinkdb:2.1.5
+ExecStartPre=/usr/bin/docker pull rethinkdb
 ExecStart=/bin/sh -c '/usr/bin/docker run --name %p-%i  \
     -p 18080:18080               \
     -p 28015:28015               \
     -p 29015:29015               \
     -v /data/rethinkdb/:/data/                          \
-    rethinkdb:2.1.5 rethinkdb --bind all                \
+    rethinkdb rethinkdb --bind all                \
     --http-port 18080                                   \
     --canonical-address ${COREOS_PRIVATE_IPV4}          \
     $(/usr/bin/etcdctl ls /services/rethinkdb |         \
