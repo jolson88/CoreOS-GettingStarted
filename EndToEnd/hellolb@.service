@@ -1,0 +1,19 @@
+[Unit]
+Requires=docker.service
+After=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+TimeoutStartSec=10m
+ExecStartPre=-/usr/bin/docker kill %p-%i
+ExecStartPre=-/usr/bin/docker rm %p-%i
+ExecStartPre=/usr/bin/docker pull jolson88/coreos-gettingstarted-lb
+ExecStart=/bin/sh -c '/usr/bin/docker run --name %p-%i  \
+    -p 8888:8888                                        \
+    -e COREOS_PRIVATE_IPV4=${COREOS_PRIVATE_IPV4}       \
+    jolson88/coreos-gettingstarted-lb'
+ExecStop=/usr/bin/docker stop %p-%i
+Restart=always
+
+[X-Fleet]
+Conflicts=hellolb@%i.service

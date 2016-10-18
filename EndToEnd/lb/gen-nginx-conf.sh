@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 SERVERS=$(curl -L -s http://${COREOS_PRIVATE_IPV4}:4001/v2/keys/services/web | jq '.node.nodes[] | { server: .value }' | grep "server" | awk '{gsub(/"/, "", $2);print $2}')
 
 cat << EOF
@@ -16,7 +18,7 @@ done
 cat << EOF
     }
     server {
-        listen 80;
+        listen 8888;
         location / {
             proxy_pass http://backend;
         }
