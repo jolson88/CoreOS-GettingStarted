@@ -5,7 +5,6 @@ var server = restify.createServer();
 var etcd = process.env.COREOS_PRIVATE_IPV4;
 
 var rethinkServer;
-
 function connect() {
     return r.connect({ host: rethinkServer, port: 28015 });
 }
@@ -42,7 +41,7 @@ server.get('/greeting', (req, res, next) => {
         r.table('settings').filter(r.row('name').eq('Prompt')).nth(0)
             .run(conn)
             .then((prompt) => {
-                 res.send(prompt['value'] + ', User!');
+                 res.send(prompt['value'] + ', User! From ' + etcd);
                  next();
             });
     });

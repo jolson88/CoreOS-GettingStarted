@@ -26,3 +26,4 @@ Restart=on-failure
 
 [X-Fleet]
 MachineOf=rethinkdb-discovery@%i.service
+
